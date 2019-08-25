@@ -18,6 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DJ-KQ-NnV">
+                                <rect key="frame" x="0.0" y="19.999999999999986" width="414" height="238.66666666666663"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </pickerView>
                             <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RiH-EN-VPQ" userLabel="Cover Picker View">
                                 <rect key="frame" x="0.0" y="19.999999999999986" width="414" height="238.66666666666663"/>
                                 <subviews>
@@ -36,11 +41,6 @@
                                     <constraint firstItem="vBy-sF-PLf" firstAttribute="top" secondItem="RiH-EN-VPQ" secondAttribute="top" constant="62" id="cvz-Yy-JXy"/>
                                 </constraints>
                             </view>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DJ-KQ-NnV">
-                                <rect key="frame" x="0.0" y="19.999999999999986" width="414" height="238.66666666666663"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </pickerView>
                             <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0u-jo-sEi" userLabel="Cover Settings View">
                                 <rect key="frame" x="0.0" y="258.66666666666669" width="414" height="238.66666666666669"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -130,6 +130,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="timerLabel" destination="vBy-sF-PLf" id="hRF-Cb-who"/>
                         <outlet property="timerPicker" destination="2DJ-KQ-NnV" id="LYM-7f-Yua"/>
                     </connections>
                 </viewController>
