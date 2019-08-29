@@ -119,13 +119,24 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         if totalSeconds != 0 {
             totalSeconds -= 1
         } else {
-            endTimer()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.endTimer()
+
+            }
         }
         
     }
     
     func endTimer() {
         countdownTimer.invalidate()
+        coverTimerPicker.isHidden = true
+        timerPicker.isHidden = false
+        minutesLabel.isHidden = false
+        secondsLabel.isHidden = false
+        startPauseResumeButton.setTitle("Start", for: .normal)
+        canStartState = true
+        canPauseState = false
+        canResumeState = false
 
     }
     
@@ -170,15 +181,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBAction func hitCancel(sender: UIButton)
     {
-        countdownTimer.invalidate()
-        coverTimerPicker.isHidden = true
-        timerPicker.isHidden = false
-        minutesLabel.isHidden = false
-        secondsLabel.isHidden = false
-        startPauseResumeButton.setTitle("Start", for: .normal)
-        canStartState = true
-        canPauseState = false
-        canResumeState = false
+        endTimer()
         print("Cancel")
         
     }
