@@ -20,20 +20,20 @@
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DJ-KQ-NnV">
                                 <rect key="frame" x="0.0" y="19.999999999999986" width="414" height="238.66666666666663"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </pickerView>
-                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RiH-EN-VPQ" userLabel="Cover Picker View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RiH-EN-VPQ" userLabel="Cover Picker View">
                                 <rect key="frame" x="0.0" y="19.999999999999986" width="414" height="238.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBy-sF-PLf">
                                         <rect key="frame" x="78" y="62.000000000000007" width="258" height="114.66666666666669"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="96"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="1" green="0.15371919014084506" blue="0.4571687940140845" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="vBy-sF-PLf" firstAttribute="centerX" secondItem="RiH-EN-VPQ" secondAttribute="centerX" id="AYW-Jd-5sa"/>
@@ -41,7 +41,19 @@
                                     <constraint firstItem="vBy-sF-PLf" firstAttribute="top" secondItem="RiH-EN-VPQ" secondAttribute="top" constant="62" id="cvz-Yy-JXy"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0u-jo-sEi" userLabel="Cover Settings View">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11t-im-ark" userLabel="minutesLabel">
+                                <rect key="frame" x="122" y="140" width="38" height="28.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="sec" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCd-Pb-wqf" userLabel="secondsLabel">
+                                <rect key="frame" x="330" y="140" width="80" height="28.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0u-jo-sEi" userLabel="Cover Settings View">
                                 <rect key="frame" x="0.0" y="258.66666666666669" width="414" height="238.66666666666669"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -51,14 +63,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njt-GL-wu9">
                                         <rect key="frame" x="150" y="95" width="114" height="50.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                        <state key="normal" title="Settings"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="hitSettingsWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YE3-xL-dfz"/>
                                             <segue destination="iYy-tP-X9K" kind="presentation" id="D1J-A9-1xR"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Njt-GL-wu9" secondAttribute="bottom" constant="93" id="47N-nh-wug"/>
                                     <constraint firstItem="Njt-GL-wu9" firstAttribute="centerX" secondItem="NKt-iz-yCg" secondAttribute="centerX" id="71i-K3-v8I"/>
@@ -71,7 +85,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBG-1V-5tR">
                                         <rect key="frame" x="278" y="93.000000000000057" width="66" height="50.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                        <state key="normal" title="Start"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="hitStartWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zJ6-1S-Hyo"/>
                                         </connections>
@@ -79,13 +95,15 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kje-aX-FVX">
                                         <rect key="frame" x="60" y="92.000000000000057" width="97" height="50.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                        <state key="normal" title="Cancel"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="hitCancelWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nb3-JG-0gy"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="UBG-1V-5tR" secondAttribute="trailing" constant="70" id="Br3-oj-ew2"/>
                                     <constraint firstItem="kje-aX-FVX" firstAttribute="leading" secondItem="xfm-o2-2xe" secondAttribute="leading" constant="60" id="IAQ-pH-eYq"/>
@@ -101,6 +119,7 @@
                         <constraints>
                             <constraint firstItem="xfm-o2-2xe" firstAttribute="top" secondItem="NKt-iz-yCg" secondAttribute="bottom" id="0hk-vZ-OhB"/>
                             <constraint firstItem="NKt-iz-yCg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="4c3-4V-UNa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FCd-Pb-wqf" secondAttribute="trailing" constant="4" id="5bv-nJ-zZn"/>
                             <constraint firstItem="NKt-iz-yCg" firstAttribute="top" secondItem="2DJ-KQ-NnV" secondAttribute="bottom" id="6LJ-Wg-Ssn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xfm-o2-2xe" secondAttribute="trailing" id="AOx-g6-YXJ"/>
                             <constraint firstItem="2DJ-KQ-NnV" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="C57-f0-V4k"/>
@@ -113,8 +132,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NKt-iz-yCg" secondAttribute="trailing" id="Nym-8w-Wtk"/>
                             <constraint firstItem="RiH-EN-VPQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="P3Q-ZN-YlY"/>
                             <constraint firstItem="n0u-jo-sEi" firstAttribute="height" secondItem="NKt-iz-yCg" secondAttribute="height" id="Pdy-1m-ECY"/>
+                            <constraint firstItem="FCd-Pb-wqf" firstAttribute="leading" secondItem="11t-im-ark" secondAttribute="trailing" constant="170" id="Qpm-3c-Jom"/>
+                            <constraint firstItem="11t-im-ark" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="122" id="S0C-d9-XOC"/>
                             <constraint firstItem="n0u-jo-sEi" firstAttribute="top" secondItem="2DJ-KQ-NnV" secondAttribute="bottom" id="TA1-au-ia5"/>
                             <constraint firstItem="n0u-jo-sEi" firstAttribute="width" secondItem="NKt-iz-yCg" secondAttribute="width" id="V2A-dv-U5x"/>
+                            <constraint firstItem="11t-im-ark" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="a9V-1j-Jwf"/>
+                            <constraint firstItem="FCd-Pb-wqf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="bfM-Ol-wzT"/>
                             <constraint firstItem="2DJ-KQ-NnV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="cDi-EQ-bu8"/>
                             <constraint firstItem="2DJ-KQ-NnV" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="1:3" id="chZ-kp-iEA"/>
                             <constraint firstItem="2DJ-KQ-NnV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dMx-q4-V9g"/>
@@ -128,15 +151,25 @@
                             <constraint firstItem="RiH-EN-VPQ" firstAttribute="height" secondItem="2DJ-KQ-NnV" secondAttribute="height" id="v4R-nQ-CQO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="RiH-EN-VPQ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="kje-aX-FVX" id="AH0-jD-yXW"/>
+                        <outlet property="coverTimerPicker" destination="RiH-EN-VPQ" id="JEN-Et-UUT"/>
+                        <outlet property="minutesLabel" destination="11t-im-ark" id="Cpu-L2-g5Z"/>
+                        <outlet property="secondsLabel" destination="FCd-Pb-wqf" id="Ra9-q4-DRv"/>
+                        <outlet property="startPauseResumeButton" destination="UBG-1V-5tR" id="oP7-kM-AGK"/>
                         <outlet property="timerLabel" destination="vBy-sF-PLf" id="hRF-Cb-who"/>
                         <outlet property="timerPicker" destination="2DJ-KQ-NnV" id="LYM-7f-Yua"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="603" y="24"/>
+            <point key="canvasLocation" x="602.89855072463774" y="23.64130434782609"/>
         </scene>
         <!--Settings-->
         <scene sceneID="R3B-H2-Zwe">
