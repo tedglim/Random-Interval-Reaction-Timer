@@ -9,7 +9,6 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
     @IBAction func hitBack(sender: UIButton)
     {
         performSegue(withIdentifier: "cancelToViewController", sender: self)
