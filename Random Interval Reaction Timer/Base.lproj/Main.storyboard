@@ -151,11 +151,6 @@
                             <constraint firstItem="RiH-EN-VPQ" firstAttribute="height" secondItem="2DJ-KQ-NnV" secondAttribute="height" id="v4R-nQ-CQO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="RiH-EN-VPQ"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="kje-aX-FVX" id="AH0-jD-yXW"/>
