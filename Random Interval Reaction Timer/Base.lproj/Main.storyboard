@@ -68,7 +68,7 @@
                                         </state>
                                         <connections>
                                             <action selector="hitSettingsWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YE3-xL-dfz"/>
-                                            <segue destination="iYy-tP-X9K" kind="presentation" id="D1J-A9-1xR"/>
+                                            <segue destination="5ja-dg-JcT" kind="show" id="fSe-Fs-BjW"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -167,53 +167,63 @@
             <point key="canvasLocation" x="602.89855072463774" y="23.64130434782609"/>
         </scene>
         <!--Settings-->
-        <scene sceneID="R3B-H2-Zwe">
+        <scene sceneID="fpo-TR-FG3">
             <objects>
-                <viewController id="oBR-8A-BW6" customClass="SettingsViewController" customModule="Random_Interval_Reaction_Timer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0vL-c4-0hn">
+                <tableViewController id="nhT-4s-qBj" customClass="SettingsTableViewController" customModule="Random_Interval_Reaction_Timer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TXg-g3-Ybo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="C9f-Wm-klw"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" id="rz1-LU-TUP">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="MSl-MC-dVx">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SwS-0m-Yfp">
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuCell" id="aUD-Mm-QDz">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aUD-Mm-QDz" id="bWe-Cj-K7s">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nhT-4s-qBj" id="pP5-U0-gbv"/>
+                            <outlet property="delegate" destination="nhT-4s-qBj" id="dbM-CW-bTm"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="jAs-yX-lHB">
+                        <barButtonItem key="leftBarButtonItem" title="Back" style="plain" id="I3B-9H-rIT">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tkd-93-qEi">
                                 <rect key="frame" x="20" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <action selector="hitBackWithSender:" destination="oBR-8A-BW6" eventType="touchUpInside" id="nbt-Fc-XyW"/>
+                                    <segue destination="49N-Ic-9KI" kind="unwind" unwindAction="cancelToViewController:" id="tpD-pV-IX7"/>
                                 </connections>
                             </button>
-                            <connections>
-                                <segue destination="zHi-nj-UWN" kind="unwind" identifier="cancelToViewController" unwindAction="cancelToViewController:" id="NvZ-lj-lbA"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="G1A-bH-jqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="zHi-nj-UWN" userLabel="Exit" sceneMemberID="exit"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pot-Ra-HHj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="49N-Ic-9KI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2055" y="24"/>
+            <point key="canvasLocation" x="2039" y="24"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="zIb-Yg-rwi">
+        <scene sceneID="R8k-MM-maC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iYy-tP-X9K" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5ja-dg-JcT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b0Q-9Y-vcx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JZY-EO-xRv">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="oBR-8A-BW6" kind="relationship" relationship="rootViewController" id="Vf1-B6-gUM"/>
+                        <segue destination="nhT-4s-qBj" kind="relationship" relationship="rootViewController" id="U7s-mP-atN"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gEd-NY-Eb7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W74-Qc-uak" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1355" y="24"/>
+            <point key="canvasLocation" x="1316" y="24"/>
         </scene>
     </scenes>
 </document>

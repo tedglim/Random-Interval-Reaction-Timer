@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+
 
 class ViewController: UIViewController,
 UIPickerViewDelegate, UIPickerViewDataSource {
@@ -31,6 +33,9 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     var canStartState = true
     var canPauseState = false
     var canResumeState = false
+    var objPlayer: AVAudioPlayer!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +123,13 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         timerLabel.text = "\(timeFormatted(totalSeconds))"
         if totalSeconds != 0 {
             totalSeconds -= 1
+            if totalSeconds == 2 {
+                DispatchQueue.main.async {
+                    self.playAudioFile()
+                    print("Played file")
+                }
+            }
+            
         } else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.endTimer()
@@ -128,16 +140,17 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func endTimer() {
-        countdownTimer.invalidate()
-        coverTimerPicker.isHidden = true
-        timerPicker.isHidden = false
-        minutesLabel.isHidden = false
-        secondsLabel.isHidden = false
-        startPauseResumeButton.setTitle("Start", for: .normal)
-        canStartState = true
-        canPauseState = false
-        canResumeState = false
-
+        if (countdownTimer != nil) {
+            countdownTimer.invalidate()
+            coverTimerPicker.isHidden = true
+            timerPicker.isHidden = false
+            minutesLabel.isHidden = false
+            secondsLabel.isHidden = false
+            startPauseResumeButton.setTitle("Start", for: .normal)
+            canStartState = true
+            canPauseState = false
+            canResumeState = false
+        }
     }
     
     func timeFormatted(_ totalSeconds: Int) -> String {
@@ -189,6 +202,23 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     @IBAction func hitSettings(sender: UIButton)
     {
         print("Settings")
+        
+    }
+    
+    func playAudioFile() {
+        if let sound = Bundle.main.url(forResource: "Sounds/move_forward", withExtension: "mp3") {
+            do {
+                objPlayer = try AVAudioPlayer(contentsOf: sound)
+            }
+            catch {
+                print(error)
+            }
+            
+            objPlayer.play()
+
+        } else {
+            print ("failed to find file")
+        }
         
     }
 }
