@@ -10,31 +10,43 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
-    @IBAction func hitBack(sender: UIButton)
-    {
-        performSegue(withIdentifier: "cancelToViewController", sender: self)
+    //inits
+    let sectionTitles = ["Words", "Color", "TBD"]
+    let settingOptions1 = ["move_backward","move_forward","move_left", "move_right"]
+    let settingOptions2 = ["red", "blue", "purple", "cyan", "orange"]
+    let settingOptions3 = ["1","2","3","4"]
+    struct Options {
+        var isSelected = false
+        var isSound = false
+        var isColor = false
+        var text = ""
+        var section = -1
+        var row = -1
     }
+    var selectedOptions = [Options]()
     
-    let sectionTitles = ["S1", "S2", "S3"]
-    let settingOptions1 = ["A","B","C"]
-    let settingOptions2 = ["1","2","3","4"]
-    let settingOptions3 = ["I", "U", "US"]
-    
-    let settingOptions = [
-        ["A", "B", "C"],
-        ["1", "2", "3", "4"],
-        ["I", "U", "US"]]
-    
-    var keywords = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkSettings()
+        
         // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
         
         tableView.tableFooterView = UIView()
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func checkSettings() {
+        print(selectedOptions)
+        for setting in selectedOptions {
+            if setting.isSelected {
+                let path = IndexPath.init(row: setting.row, section: setting.section)
+                self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
+                self.tableView.cellForRow(at: path)?.accessoryType = .checkmark
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -85,17 +97,41 @@ class SettingsTableViewController: UITableViewController {
 
     //select&deselect row checkmark
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
+//        tableView.deselectRow(at: indexPath, animated: true)
         if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
             if cell.accessoryType == .checkmark {
                 cell.accessoryType = .none
+                let index = selectedOptions.firstIndex(where: { $0.section == indexPath.section && $0.row == indexPath.row })
+                selectedOptions.remove(at: index!)
             } else {
+                var option = Options(
+                    isSelected: true, isSound: false, isColor: false, text: cell.textLabel!.text!, section: indexPath.section, row: indexPath.row)
+                if indexPath.section == 1 {
+                    option.isColor = true
+                } else {
+                    option.isSound = true
+                }
                 cell.accessoryType = .checkmark
+                selectedOptions.append(option)
             }
         }
+        print(selectedOptions)
     }
 
+    @IBAction func hitBack(sender: UIButton)
+    {
+        performSegue(withIdentifier: "cancelToViewController", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "cancelToViewController" {
+            print("cancel to view controller from Settings")
+            let vc = segue.destination as! ViewController
+            vc.passedOptions = selectedOptions
+            print("These are passed options: \(vc.passedOptions)")
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -42,13 +42,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11t-im-ark" userLabel="minutesLabel">
-                                <rect key="frame" x="125" y="110.00000000000001" width="38" height="58.666666666666671"/>
+                                <rect key="frame" x="125" y="125.00000000000001" width="38" height="28.666666666666671"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="sec" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCd-Pb-wqf" userLabel="secondsLabel">
-                                <rect key="frame" x="333" y="125.00000000000001" width="77" height="28.666666666666671"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sec" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-nI-Ocf" userLabel="secondsLabel">
+                                <rect key="frame" x="334.33333333333331" y="125.00000000000001" width="36.666666666666686" height="28.666666666666671"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                                         </state>
                                         <connections>
                                             <action selector="hitSettingsWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YE3-xL-dfz"/>
-                                            <segue destination="5ja-dg-JcT" kind="show" id="fSe-Fs-BjW"/>
+                                            <segue destination="5ja-dg-JcT" kind="show" identifier="segueToSettings" id="fSe-Fs-BjW"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -118,18 +118,19 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="xfm-o2-2xe" firstAttribute="top" secondItem="NKt-iz-yCg" secondAttribute="bottom" id="0hk-vZ-OhB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8bC-nI-Ocf" secondAttribute="trailing" constant="43" id="4TG-up-yCd"/>
                             <constraint firstItem="NKt-iz-yCg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="4c3-4V-UNa"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FCd-Pb-wqf" secondAttribute="trailing" constant="4" id="5bv-nJ-zZn"/>
+                            <constraint firstItem="8bC-nI-Ocf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="11t-im-ark" secondAttribute="trailing" constant="8" symbolic="YES" id="4g9-Ye-u8S"/>
                             <constraint firstItem="NKt-iz-yCg" firstAttribute="top" secondItem="2DJ-KQ-NnV" secondAttribute="bottom" id="6LJ-Wg-Ssn"/>
-                            <constraint firstItem="n0u-jo-sEi" firstAttribute="top" secondItem="11t-im-ark" secondAttribute="bottom" constant="90" id="7YA-of-W4q"/>
+                            <constraint firstItem="n0u-jo-sEi" firstAttribute="top" secondItem="11t-im-ark" secondAttribute="bottom" constant="105" id="6hj-Ol-40O"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xfm-o2-2xe" secondAttribute="trailing" id="AOx-g6-YXJ"/>
+                            <constraint firstItem="11t-im-ark" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="105" id="AQ4-wh-ojM"/>
                             <constraint firstItem="2DJ-KQ-NnV" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="C57-f0-V4k"/>
                             <constraint firstItem="NKt-iz-yCg" firstAttribute="top" secondItem="2DJ-KQ-NnV" secondAttribute="bottom" id="CDG-aA-YN2"/>
                             <constraint firstItem="NKt-iz-yCg" firstAttribute="width" secondItem="2DJ-KQ-NnV" secondAttribute="width" id="Dba-gf-m7U"/>
                             <constraint firstItem="NKt-iz-yCg" firstAttribute="height" secondItem="2DJ-KQ-NnV" secondAttribute="height" id="DyG-fF-LNi"/>
                             <constraint firstItem="NKt-iz-yCg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="E2q-NB-Sl1"/>
-                            <constraint firstItem="11t-im-ark" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="GPl-Oq-UJ7"/>
-                            <constraint firstItem="11t-im-ark" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="125" id="Kx3-GR-33H"/>
+                            <constraint firstItem="n0u-jo-sEi" firstAttribute="top" secondItem="8bC-nI-Ocf" secondAttribute="bottom" constant="105" id="Hk3-KI-OtB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n0u-jo-sEi" secondAttribute="trailing" id="LqY-kV-cbT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RiH-EN-VPQ" secondAttribute="trailing" id="Ntz-DJ-OS4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NKt-iz-yCg" secondAttribute="trailing" id="Nym-8w-Wtk"/>
@@ -137,8 +138,7 @@
                             <constraint firstItem="n0u-jo-sEi" firstAttribute="height" secondItem="NKt-iz-yCg" secondAttribute="height" id="Pdy-1m-ECY"/>
                             <constraint firstItem="n0u-jo-sEi" firstAttribute="top" secondItem="2DJ-KQ-NnV" secondAttribute="bottom" id="TA1-au-ia5"/>
                             <constraint firstItem="n0u-jo-sEi" firstAttribute="width" secondItem="NKt-iz-yCg" secondAttribute="width" id="V2A-dv-U5x"/>
-                            <constraint firstItem="FCd-Pb-wqf" firstAttribute="leading" secondItem="11t-im-ark" secondAttribute="trailing" constant="170" id="X9h-Bm-Npp"/>
-                            <constraint firstItem="FCd-Pb-wqf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="105" id="bfM-Ol-wzT"/>
+                            <constraint firstItem="11t-im-ark" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="125" id="bHd-tL-BOG"/>
                             <constraint firstItem="2DJ-KQ-NnV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="cDi-EQ-bu8"/>
                             <constraint firstItem="2DJ-KQ-NnV" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="1:3" id="chZ-kp-iEA"/>
                             <constraint firstItem="2DJ-KQ-NnV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dMx-q4-V9g"/>
@@ -150,6 +150,8 @@
                             <constraint firstItem="2DJ-KQ-NnV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qzE-gv-2rC"/>
                             <constraint firstItem="xfm-o2-2xe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uVH-4O-IFn"/>
                             <constraint firstItem="RiH-EN-VPQ" firstAttribute="height" secondItem="2DJ-KQ-NnV" secondAttribute="height" id="v4R-nQ-CQO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="11t-im-ark" secondAttribute="trailing" symbolic="YES" id="x8D-KX-QjU"/>
+                            <constraint firstItem="8bC-nI-Ocf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="105" id="z8h-YC-MY9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -159,7 +161,7 @@
                         <outlet property="coverSettings" destination="n0u-jo-sEi" id="io4-NR-9he"/>
                         <outlet property="coverTimerPicker" destination="RiH-EN-VPQ" id="JEN-Et-UUT"/>
                         <outlet property="minutesLabel" destination="11t-im-ark" id="Cpu-L2-g5Z"/>
-                        <outlet property="secondsLabel" destination="FCd-Pb-wqf" id="Ra9-q4-DRv"/>
+                        <outlet property="secondsLabel" destination="8bC-nI-Ocf" id="VcB-b6-SXJ"/>
                         <outlet property="settings" destination="NKt-iz-yCg" id="DzB-ig-zXC"/>
                         <outlet property="startPauseResumeButton" destination="UBG-1V-5tR" id="oP7-kM-AGK"/>
                         <outlet property="timerLabel" destination="vBy-sF-PLf" id="hRF-Cb-who"/>
@@ -200,7 +202,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <segue destination="49N-Ic-9KI" kind="unwind" unwindAction="cancelToViewController:" id="tpD-pV-IX7"/>
+                                    <segue destination="49N-Ic-9KI" kind="unwind" identifier="cancelToViewController" unwindAction="cancelToViewController:" id="tpD-pV-IX7"/>
                                 </connections>
                             </button>
                         </barButtonItem>

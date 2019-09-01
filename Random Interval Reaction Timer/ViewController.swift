@@ -23,6 +23,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var settings: UIView!
     @IBOutlet weak var buttons: UIView!
     
+    var mainSoundsArray = [URL]()
     var soundsArray = [URL]()
     var soundPlayer = AVAudioPlayer()
     var colorArray = [UIColor.red, UIColor.blue, UIColor.purple, UIColor.cyan, UIColor.orange]
@@ -41,12 +42,18 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     var canResumeState = false
     var elapsedIntervalOfTime = 0
     var minIntervalAmount = 2
-
+    
+    var passedOptions = [SettingsTableViewController.Options]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // Do any additional setup after loading the view.
-        soundsArray = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: "Sounds")!
+        mainSoundsArray = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: "Sounds")!
+//        for sound in soundsArray {
+//            print(sound)
+//        }
         coverTimerPicker.isHidden = true
         self.timerPicker.delegate = self
         self.timerPicker.dataSource = self
@@ -55,37 +62,53 @@ UIPickerViewDelegate, UIPickerViewDataSource {
 
     //randomly choose files to play from settings-based audio file array
     func playRandomAudio(selectedAudio: [URL]) {
-        var audioChoices = selectedAudio
-        if prevAudio != URL(string: "") {
-            if let index = audioChoices.firstIndex(of: prevAudio!) {
-                audioChoices.remove(at: index)
+        if selectedAudio.count == 1 {
+            do {
+                soundPlayer = try AVAudioPlayer(contentsOf: selectedAudio[0])
+                soundPlayer.volume = 1
+                soundPlayer.play()
+            } catch {
+                print(error)
             }
-        }
-        let selection = Int.random(in: 0...(audioChoices.count-1))
-        do {
-            soundPlayer = try AVAudioPlayer(contentsOf: audioChoices[selection])
-            soundPlayer.play()
-            prevAudio = audioChoices[selection]
-        } catch {
-            print(error)
+        } else {
+            var audioChoices = selectedAudio
+            if prevAudio != URL(string: "") {
+                if let index = audioChoices.firstIndex(of: prevAudio!) {
+                    audioChoices.remove(at: index)
+                }
+            }
+            let selection = Int.random(in: 0...(audioChoices.count-1))
+            do {
+                soundPlayer = try AVAudioPlayer(contentsOf: audioChoices[selection])
+                soundPlayer.volume = 1
+                soundPlayer.play()
+                prevAudio = audioChoices[selection]
+            } catch {
+                print(error)
+            }
         }
     }
     
     //randomly choose foreground color of app
     func changeForegroundColor(selectedColors: [UIColor]) {
-        var colorChoices = selectedColors
-        if prevColor != UIColor.white {
-            if let index = colorChoices.firstIndex(of: prevColor) {
-                colorChoices.remove(at: index)
+        if selectedColors.count == 1 {
+            coverTimerPicker.backgroundColor = selectedColors[0]
+            coverSettings.backgroundColor = selectedColors[0]
+            buttons.backgroundColor = selectedColors[0]
+        } else {
+            var colorChoices = selectedColors
+            if prevColor != UIColor.white {
+                if let index = colorChoices.firstIndex(of: prevColor) {
+                    colorChoices.remove(at: index)
+                }
             }
+            let selection = Int.random(in: 0...(colorChoices.count-1))
+            let chosenColor = colorChoices[selection]
+            coverTimerPicker.backgroundColor = chosenColor
+            coverSettings.backgroundColor = chosenColor
+            buttons.backgroundColor = chosenColor
+            prevColor = chosenColor
         }
-        let selection = Int.random(in: 0...(colorChoices.count-1))
-        let chosenColor = colorChoices[selection]
-        coverTimerPicker.backgroundColor = chosenColor
-        coverSettings.backgroundColor = chosenColor
-        buttons.backgroundColor = chosenColor
-        prevColor = chosenColor
-        
     }
     
     //Table Setup
@@ -151,10 +174,50 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     //Timer Setup
     //starts Timer
     func startTimer() {
+        soundsArray = setupSounds()
+        colorArray = setupColors()
         totalSeconds = selectedTime01 * 60 + selectedTime02
         canStartState = false
         canPauseState = true
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    }
+    
+    func setupSounds () -> [URL] {
+        var sounds = [URL]()
+        var count = 0
+        for option in passedOptions {
+            if option.isSound {
+                count = count + 1
+                for url in mainSoundsArray {
+                    if (url.absoluteString.range(of: option.text) != nil) {
+                        sounds.append(url)
+                    }
+                }
+            }
+        }
+        print("Printed sounds: \(sounds)")
+        print(count)
+        return sounds
+    }
+    
+    func setupColors() -> [UIColor] {
+        var colors = [UIColor]()
+        for option in passedOptions {
+            if option.isColor {
+                if (option.text == "red") {
+                    colors.append(UIColor.red)
+                } else if (option.text == "blue") {
+                    colors.append(UIColor.blue)
+                } else if (option.text == "purple") {
+                    colors.append(UIColor.purple)
+                } else if (option.text == "cyan") {
+                    colors.append(UIColor.cyan)
+                } else if (option.text == "orange") {
+                    colors.append(UIColor.orange)
+                }
+            }
+        }
+        return colors
     }
     
     //updates timer; checks when to trigger stimulus
@@ -163,9 +226,13 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         if totalSeconds != -1 {
             totalSeconds -= 1
             if canTriggerStimulus() {
-                self.playRandomAudio(selectedAudio: soundsArray)
-                self.changeForegroundColor(selectedColors: colorArray)
-                print("Played file")
+                if (soundsArray.count > 0) {
+                    self.playRandomAudio(selectedAudio: soundsArray)
+                }
+                if (colorArray.count > 0) {
+                    self.changeForegroundColor(selectedColors: colorArray)
+                }
+                print("stimulus triggered")
             }
         } else {
             self.endTimer()
@@ -207,6 +274,8 @@ UIPickerViewDelegate, UIPickerViewDataSource {
             canStartState = true
             canPauseState = false
             canResumeState = false
+            coverTimerPicker.backgroundColor = UIColor.black
+            coverSettings.backgroundColor = UIColor.black
             buttons.backgroundColor = UIColor.black
         }
     }
@@ -249,11 +318,21 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     //segues to Settings
     @IBAction func hitSettings(sender: UIButton)
     {
+        performSegue(withIdentifier: "segueToSettings", sender: self)
         print("Settings")
-        
+        print(passedOptions)
     }
     
     //unwindSegues to main view
     @IBAction func cancelToViewController(_ unwindSegue: UIStoryboardSegue)
     {}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToSettings" {
+            print("segue to settings")
+            let nc = segue.destination as! UINavigationController
+            let tableVC = nc.viewControllers.first as! SettingsTableViewController
+            tableVC.selectedOptions = passedOptions
+        }
+    }
 }
