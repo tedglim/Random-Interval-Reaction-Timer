@@ -15,6 +15,7 @@ class SettingsTableViewController: UITableViewController {
     let settingOptions1 = ["move_backward","move_forward","move_left", "move_right"]
     let settingOptions2 = ["red", "blue", "purple", "cyan", "orange"]
     let settingOptions3 = ["1","2","3","4"]
+    
     struct Options {
         var isSelected = false
         var isSound = false
@@ -25,21 +26,16 @@ class SettingsTableViewController: UITableViewController {
     }
     var selectedOptions = [Options]()
     
-    
+    //onViewLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         checkSettings()
-        
-        // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
-        
         tableView.tableFooterView = UIView()
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    //marks selected rows on segue back to settingsVC
     func checkSettings() {
-        print(selectedOptions)
         for setting in selectedOptions {
             if setting.isSelected {
                 let path = IndexPath.init(row: setting.row, section: setting.section)
@@ -49,10 +45,8 @@ class SettingsTableViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table view data source
     //numSections
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return sectionTitles.count
     }
 
@@ -68,8 +62,6 @@ class SettingsTableViewController: UITableViewController {
         default:
             return -1
         }
-        // #warning Incomplete implementation, return the number of rows
-        
     }
 
     //titlePerSection
@@ -80,8 +72,6 @@ class SettingsTableViewController: UITableViewController {
     //addContent
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
-
-        // Configure the cell...
         switch (indexPath.section) {
         case 0:
             cell.textLabel?.text = settingOptions1[indexPath.row]
@@ -91,13 +81,11 @@ class SettingsTableViewController: UITableViewController {
             cell.textLabel?.text = settingOptions3[indexPath.row]
         default: break
         }
-
         return cell
     }
 
-    //select&deselect row checkmark
+    //select&deselect row checkmark; selected to storage array
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
         if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
             if cell.accessoryType == .checkmark {
                 cell.accessoryType = .none
@@ -115,66 +103,19 @@ class SettingsTableViewController: UITableViewController {
                 selectedOptions.append(option)
             }
         }
-        print(selectedOptions)
     }
 
+    //perform segue on back button press
     @IBAction func hitBack(sender: UIButton)
     {
         performSegue(withIdentifier: "cancelToViewController", sender: self)
     }
     
+    //store chosen settings and pass to VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "cancelToViewController" {
-            print("cancel to view controller from Settings")
             let vc = segue.destination as! ViewController
             vc.passedOptions = selectedOptions
-            print("These are passed options: \(vc.passedOptions)")
         }
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
