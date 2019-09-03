@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		82125F4D2311215B00BED4A8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82125F4C2311215B00BED4A8 /* SettingsViewController.swift */; };
 		82791A842310EC9900B9E2DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82791A832310EC9900B9E2DB /* AppDelegate.swift */; };
 		82791A862310EC9900B9E2DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82791A852310EC9900B9E2DB /* ViewController.swift */; };
 		82791A892310EC9900B9E2DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82791A872310EC9900B9E2DB /* Main.storyboard */; };
 		82791A8B2310EC9B00B9E2DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82791A8A2310EC9B00B9E2DB /* Assets.xcassets */; };
 		82791A8E2310EC9B00B9E2DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82791A8C2310EC9B00B9E2DB /* LaunchScreen.storyboard */; };
+		82B04E3723189B17000DD5A5 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B04E3623189B17000DD5A5 /* SettingsTableViewController.swift */; };
+		82B04E3B2318D804000DD5A5 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 82B04E3A2318D804000DD5A5 /* Sounds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		82125F4C2311215B00BED4A8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		82791A802310EC9900B9E2DB /* Random Interval Reaction Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Random Interval Reaction Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82791A832310EC9900B9E2DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82791A852310EC9900B9E2DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +24,8 @@
 		82791A8A2310EC9B00B9E2DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82791A8D2310EC9B00B9E2DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82791A8F2310EC9B00B9E2DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82B04E3623189B17000DD5A5 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		82B04E3A2318D804000DD5A5 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 		82791A772310EC9900B9E2DB = {
 			isa = PBXGroup;
 			children = (
+				82B04E3A2318D804000DD5A5 /* Sounds */,
 				82791A822310EC9900B9E2DB /* Random Interval Reaction Timer */,
 				82791A812310EC9900B9E2DB /* Products */,
 			);
@@ -58,7 +61,7 @@
 			children = (
 				82791A832310EC9900B9E2DB /* AppDelegate.swift */,
 				82791A852310EC9900B9E2DB /* ViewController.swift */,
-				82125F4C2311215B00BED4A8 /* SettingsViewController.swift */,
+				82B04E3623189B17000DD5A5 /* SettingsTableViewController.swift */,
 				82791A872310EC9900B9E2DB /* Main.storyboard */,
 				82791A8A2310EC9B00B9E2DB /* Assets.xcassets */,
 				82791A8C2310EC9B00B9E2DB /* LaunchScreen.storyboard */,
@@ -127,6 +130,7 @@
 			files = (
 				82791A8E2310EC9B00B9E2DB /* LaunchScreen.storyboard in Resources */,
 				82791A8B2310EC9B00B9E2DB /* Assets.xcassets in Resources */,
+				82B04E3B2318D804000DD5A5 /* Sounds in Resources */,
 				82791A892310EC9900B9E2DB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +142,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82B04E3723189B17000DD5A5 /* SettingsTableViewController.swift in Sources */,
 				82791A862310EC9900B9E2DB /* ViewController.swift in Sources */,
 				82791A842310EC9900B9E2DB /* AppDelegate.swift in Sources */,
-				82125F4D2311215B00BED4A8 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
