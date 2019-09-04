@@ -12,9 +12,9 @@ class SettingsTableViewController: UITableViewController {
 
     //inits
     let sectionTitles = ["Words", "Color", "TBD"]
-    let settingOptions1 = ["move_backward","move_forward","move_left", "move_right"]
+    let settingOptions1 = ["forward","backward","right", "left", "1", "2", "3", "4"]
     let settingOptions2 = ["red", "blue", "purple", "cyan", "orange"]
-    let settingOptions3 = ["1","2","3","4"]
+//    let settingOptions3 = ["1","2","3","4"]
     
     struct Options {
         var isSelected = false
@@ -58,7 +58,7 @@ class SettingsTableViewController: UITableViewController {
         case 1:
             return settingOptions2.count
         case 2:
-            return settingOptions3.count
+            return 1
         default:
             return -1
         }
@@ -77,8 +77,8 @@ class SettingsTableViewController: UITableViewController {
             cell.textLabel?.text = settingOptions1[indexPath.row]
         case 1:
             cell.textLabel?.text = settingOptions2[indexPath.row]
-        case 2:
-            cell.textLabel?.text = settingOptions3[indexPath.row]
+//        case 2:
+//            cell.textLabel?.text = settingOptions3[indexPath.row]
         default: break
         }
         return cell
@@ -89,6 +89,8 @@ class SettingsTableViewController: UITableViewController {
         if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
             if cell.accessoryType == .checkmark {
                 cell.accessoryType = .none
+                cell.isSelected = false
+                cell.isHighlighted = false
                 let index = selectedOptions.firstIndex(where: { $0.section == indexPath.section && $0.row == indexPath.row })
                 selectedOptions.remove(at: index!)
             } else {
