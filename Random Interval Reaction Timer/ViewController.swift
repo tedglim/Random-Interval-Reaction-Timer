@@ -9,8 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController,
-UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var timerPicker: UIPickerView!
@@ -42,9 +41,11 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     var canPauseState = false
     var canResumeState = false
     var elapsedIntervalOfTime = 0
-    var minIntervalAmount = 2
+//    var minIntervalAmount = 2
     
     var passedOptions = [SettingsTableViewController.Options]()
+    var minInterval = 1
+    var random = 1
     
     //onViewLoad
     override func viewDidLoad() {
@@ -183,7 +184,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     //checks if elapsed time meets a min condition (>2s), then 50% chance to trigger stimulus
     func canTriggerStimulus () -> Bool {
         elapsedIntervalOfTime += 1
-        if elapsedIntervalOfTime > minIntervalAmount {
+        if elapsedIntervalOfTime > minInterval {
             let num = Int.random(in: 0...1)
             if num == 0 {
                 elapsedIntervalOfTime = 0
@@ -310,6 +311,8 @@ UIPickerViewDelegate, UIPickerViewDataSource {
             let nc = segue.destination as! UINavigationController
             let tableVC = nc.viewControllers.first as! SettingsTableViewController
             tableVC.selectedOptions = passedOptions
+            tableVC.numField01 = minInterval
+            tableVC.numField02 = random
         }
     }
 }

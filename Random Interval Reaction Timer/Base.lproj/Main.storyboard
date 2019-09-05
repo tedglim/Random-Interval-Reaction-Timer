@@ -189,13 +189,44 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="numInputCell" id="Zal-ne-VKa">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="numInputCell" id="Zal-ne-VKa" customClass="numInputTableViewCell" customModule="Random_Interval_Reaction_Timer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zal-ne-VKa" id="vdu-qO-WL1">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-it-pd0">
+                                            <rect key="frame" x="275" y="6" width="119" height="30"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                            <connections>
+                                                <action selector="numInputEditingDidEnd:" destination="nhT-4s-qBj" eventType="editingDidEnd" id="XaW-7F-vgG"/>
+                                            </connections>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Interval" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vf-qE-0xV">
+                                            <rect key="frame" x="20.000000000000007" y="7" width="100.66666666666669" height="29"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="1Vf-qE-0xV" secondAttribute="bottom" constant="7.6699999999999999" id="9Rr-v5-MyX"/>
+                                        <constraint firstAttribute="bottom" secondItem="COZ-it-pd0" secondAttribute="bottom" constant="7.6699999999999999" id="CUb-nf-hde"/>
+                                        <constraint firstItem="COZ-it-pd0" firstAttribute="top" secondItem="vdu-qO-WL1" secondAttribute="top" constant="6" id="LV8-rQ-F8v"/>
+                                        <constraint firstItem="COZ-it-pd0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Vf-qE-0xV" secondAttribute="trailing" constant="8" symbolic="YES" id="MVP-7L-3gW"/>
+                                        <constraint firstItem="1Vf-qE-0xV" firstAttribute="leading" secondItem="vdu-qO-WL1" secondAttribute="leading" constant="20" id="On4-1J-ooG"/>
+                                        <constraint firstAttribute="trailing" secondItem="COZ-it-pd0" secondAttribute="trailing" constant="20" id="P5c-37-AVb"/>
+                                        <constraint firstItem="1Vf-qE-0xV" firstAttribute="top" secondItem="vdu-qO-WL1" secondAttribute="top" constant="7" id="T09-bw-AIi"/>
+                                        <constraint firstItem="COZ-it-pd0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vdu-qO-WL1" secondAttribute="leading" constant="20" symbolic="YES" id="nYm-Hu-La8"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="numInputField" destination="COZ-it-pd0" id="n5R-Io-AtO"/>
+                                    <outlet property="numLabel" destination="1Vf-qE-0xV" id="ia7-u8-FAj"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -219,7 +250,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pot-Ra-HHj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="49N-Ic-9KI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2039" y="24"/>
+            <point key="canvasLocation" x="2037.68115942029" y="23.64130434782609"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="R8k-MM-maC">
