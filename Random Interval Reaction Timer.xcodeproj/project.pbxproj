@@ -12,6 +12,7 @@
 		82791A892310EC9900B9E2DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82791A872310EC9900B9E2DB /* Main.storyboard */; };
 		82791A8B2310EC9B00B9E2DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82791A8A2310EC9B00B9E2DB /* Assets.xcassets */; };
 		82791A8E2310EC9B00B9E2DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82791A8C2310EC9B00B9E2DB /* LaunchScreen.storyboard */; };
+		827C4EC32321A5E40042D05B /* TableViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827C4EC22321A5E40042D05B /* TableViewControllerExtension.swift */; };
 		82A92F3B23207C3400440FCA /* numInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A92F3A23207C3400440FCA /* numInputTableViewCell.swift */; };
 		82B04E3723189B17000DD5A5 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B04E3623189B17000DD5A5 /* SettingsTableViewController.swift */; };
 		82B04E3B2318D804000DD5A5 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 82B04E3A2318D804000DD5A5 /* Sounds */; };
@@ -25,6 +26,7 @@
 		82791A8A2310EC9B00B9E2DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82791A8D2310EC9B00B9E2DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82791A8F2310EC9B00B9E2DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		827C4EC22321A5E40042D05B /* TableViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewControllerExtension.swift; path = Extensions/TableViewControllerExtension.swift; sourceTree = "<group>"; };
 		82A92F3A23207C3400440FCA /* numInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = numInputTableViewCell.swift; sourceTree = "<group>"; };
 		82B04E3623189B17000DD5A5 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		82B04E3A2318D804000DD5A5 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
@@ -61,10 +63,11 @@
 		82791A822310EC9900B9E2DB /* Random Interval Reaction Timer */ = {
 			isa = PBXGroup;
 			children = (
-				82A92F3A23207C3400440FCA /* numInputTableViewCell.swift */,
-				82791A832310EC9900B9E2DB /* AppDelegate.swift */,
 				82791A852310EC9900B9E2DB /* ViewController.swift */,
 				82B04E3623189B17000DD5A5 /* SettingsTableViewController.swift */,
+				82791A832310EC9900B9E2DB /* AppDelegate.swift */,
+				82A92F3A23207C3400440FCA /* numInputTableViewCell.swift */,
+				827C4EC22321A5E40042D05B /* TableViewControllerExtension.swift */,
 				82791A872310EC9900B9E2DB /* Main.storyboard */,
 				82791A8A2310EC9B00B9E2DB /* Assets.xcassets */,
 				82791A8C2310EC9B00B9E2DB /* LaunchScreen.storyboard */,
@@ -149,6 +152,7 @@
 				82A92F3B23207C3400440FCA /* numInputTableViewCell.swift in Sources */,
 				82791A862310EC9900B9E2DB /* ViewController.swift in Sources */,
 				82791A842310EC9900B9E2DB /* AppDelegate.swift in Sources */,
+				827C4EC32321A5E40042D05B /* TableViewControllerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

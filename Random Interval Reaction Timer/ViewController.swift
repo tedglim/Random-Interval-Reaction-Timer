@@ -41,11 +41,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var canPauseState = false
     var canResumeState = false
     var elapsedIntervalOfTime = 0
-//    var minIntervalAmount = 2
     
     var passedOptions = [SettingsTableViewController.Options]()
     var minInterval = 1
-    var random = 1
+    var frequency = 10
+    var cap = 11
     
     //onViewLoad
     override func viewDidLoad() {
@@ -131,6 +131,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 }
             }
         }
+        print("setup sounds array")
+        print(sounds)
         return sounds
     }
     
@@ -184,12 +186,20 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     //checks if elapsed time meets a min condition (>2s), then 50% chance to trigger stimulus
     func canTriggerStimulus () -> Bool {
         elapsedIntervalOfTime += 1
-        if elapsedIntervalOfTime > minInterval {
-            let num = Int.random(in: 0...1)
-            if num == 0 {
-                elapsedIntervalOfTime = 0
-                return true
-            }
+        if elapsedIntervalOfTime >= minInterval {
+//            if elapsedIntervalOfTime % 2 == 0 {
+//                let num = Int.random(in: 0...3)
+//                if num == 0 {
+//                    return true
+//                }
+//            } else {
+                let upperLimit = cap - frequency
+                let num = Int.random(in: 0...upperLimit)
+                if num == 0 {
+                    elapsedIntervalOfTime = 0
+                    return true
+                }
+//            }
         }
         return false
     }
@@ -262,6 +272,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             coverTimerPicker.backgroundColor = UIColor.black
             coverSettings.backgroundColor = UIColor.black
             buttons.backgroundColor = UIColor.black
+            totalSeconds = selectedTime01 * 60 + selectedTime02
         }
     }
     
@@ -296,12 +307,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         endTimer()
     }
     
-    //segues to Settings
-    @IBAction func hitSettings(sender: UIButton)
-    {
-        performSegue(withIdentifier: "segueToSettings", sender: self)
-    }
-    
     //unwindSegues to main view
     @IBAction func cancelToViewController(_ unwindSegue: UIStoryboardSegue)
     {}
@@ -311,8 +316,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             let nc = segue.destination as! UINavigationController
             let tableVC = nc.viewControllers.first as! SettingsTableViewController
             tableVC.selectedOptions = passedOptions
-            tableVC.numField01 = minInterval
-            tableVC.numField02 = random
+            tableVC.intervalField = minInterval
+            tableVC.freqField = frequency
+            print("FROM VC")
+            print("These are passed options:")
+            print(tableVC.selectedOptions)
+            print("Min Interval")
+            print(tableVC.intervalField)
+            print("Frequency")
+            print(tableVC.freqField)
         }
     }
 }

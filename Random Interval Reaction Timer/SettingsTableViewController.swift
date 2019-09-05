@@ -24,19 +24,20 @@ class SettingsTableViewController: UITableViewController {
         var row = -1
     }
     var selectedOptions = [Options]()
-    var defaultStr = ""
-    var defaultInt = 1
-    var numField01 = 1
-    var numField02 = 1
+    
+    var defStr = ""
+    var intervalField = 1
+    var defInt = 1
+    var freqField = 10
+    var defFreq = 10
+    var defFreqStr = "10"
+
     
     //onViewLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         checkSettings()
-        self.clearsSelectionOnViewWillAppear = false
-        tableView.tableFooterView = UIView()
-        let tap = UITapGestureRecognizer(target: self.tableView, action: #selector (UITableView.endEditing))
-        tableView.addGestureRecognizer(tap)
+        self.closeKeyboardOnOutsideTap()
     }
     
     //marks selected rows on segue back to settingsVC
@@ -74,7 +75,7 @@ class SettingsTableViewController: UITableViewController {
         return sectionTitles[section]
     }
 
-    //addContent
+    //addContent; fills timer options settings on add content phase
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell01 = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
         switch (indexPath.section) {
@@ -85,19 +86,16 @@ class SettingsTableViewController: UITableViewController {
         case 2:
             let cell02 = tableView.dequeueReusableCell(withIdentifier: "numInputCell", for: indexPath) as! numInputTableViewCell
             if indexPath.row == 0 {
-                cell02.numLabel.text = "Min Interval (s)"
+                cell02.numLabel.text = "Min Interval (sec)"
                 cell02.numInputField.placeholder = "Enter Value"
-                if numField01 != defaultInt {
-                    cell02.numInputField.text = String(numField01)
-                }
+                cell02.numInputField.text = String(intervalField)
+                cell02.selectionStyle = UITableViewCell.SelectionStyle.none
             } else if indexPath.row == 1 {
-                cell02.numLabel.text = "Randomness"
+                cell02.numLabel.text = "Frequency"
                 cell02.numInputField.placeholder = "1 - 10"
-                if numField02 != defaultInt {
-                    cell02.numInputField.text = String(numField02)
-                }
+                cell02.numInputField.text = String(freqField)
+                cell02.selectionStyle = UITableViewCell.SelectionStyle.none
             }
-            cell02.selectionStyle = UITableViewCell.SelectionStyle.none
             return cell02
         default: break
         }
@@ -113,6 +111,8 @@ class SettingsTableViewController: UITableViewController {
                 cell.isHighlighted = false
                 let index = selectedOptions.firstIndex(where: { $0.section == indexPath.section && $0.row == indexPath.row })
                 selectedOptions.remove(at: index!)
+//            } else if cell.selectionStyle == UITableViewCell.SelectionStyle.none {
+//                return
             } else {
                 var option = Options(
                     isSelected: true, isSound: false, isColor: false, text: cell.textLabel!.text!, section: indexPath.section, row: indexPath.row)
@@ -140,32 +140,27 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func numInputEditingDidEnd(_ sender: UITextField) {
         if sender.placeholder == "Enter Value" {
             //store value as minInterval
-            if let tempTxt = sender.text {
-                numField01 = Int(tempTxt) ?? defaultInt
+            if let tmpTxt = sender.text {
+                intervalField = Int(tmpTxt) ?? defInt
             } else {
-                numField01 = defaultInt
+                intervalField = defInt
             }
-            print(numField01)
-            print("1st cell")
         } else if sender.placeholder == "1 - 10" {
-            if let tempTxt = sender.text {
-                numField02 = Int(tempTxt) ?? defaultInt
+            if let tmpTxt = sender.text {
+                freqField = Int(tmpTxt) ?? defFreq
             } else {
-                numField02 = defaultInt
+                freqField = defFreq
             }
-            if numField02 > 10 || numField02 <= 0 {
-                sender.text = defaultStr
-                numField02 = defaultInt
+            if freqField > 10 || freqField <= 0 {
+                sender.text = defFreqStr
+                freqField = defFreq
             }
-            print(numField02)
-            print("2nd cell")
         }
     }
     
-    //perform segue on back button press
-    @IBAction func hitBack(sender: UIButton)
-    {
-        performSegue(withIdentifier: "cancelToViewController", sender: self)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
     }
     
     //store chosen settings and pass to VC
@@ -173,8 +168,15 @@ class SettingsTableViewController: UITableViewController {
         if segue.identifier == "cancelToViewController" {
             let vc = segue.destination as! ViewController
             vc.passedOptions = selectedOptions
-            vc.minInterval = numField01
-            vc.random = numField02
+            vc.minInterval = intervalField
+            vc.frequency = freqField
+            print("FROM SETTINGS")
+            print("These are passed options:")
+            print(vc.passedOptions)
+            print("Min Interval")
+            print(vc.minInterval)
+            print("Frequency")
+            print(vc.frequency)
         }
     }
 }
