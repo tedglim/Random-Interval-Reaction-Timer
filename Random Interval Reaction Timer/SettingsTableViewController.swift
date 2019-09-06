@@ -21,8 +21,6 @@ class SettingsTableViewController: UITableViewController {
         var isColor = false
         var text = ""
         var idxPath = IndexPath()
-//        var section = -1
-//        var row = -1
     }
     var selectedOptions = [Options]()
     
