@@ -111,8 +111,6 @@ class SettingsTableViewController: UITableViewController {
                 cell.isHighlighted = false
                 let index = selectedOptions.firstIndex(where: { $0.section == indexPath.section && $0.row == indexPath.row })
                 selectedOptions.remove(at: index!)
-//            } else if cell.selectionStyle == UITableViewCell.SelectionStyle.none {
-//                return
             } else {
                 var option = Options(
                     isSelected: true, isSound: false, isColor: false, text: cell.textLabel!.text!, section: indexPath.section, row: indexPath.row)
@@ -156,11 +154,6 @@ class SettingsTableViewController: UITableViewController {
                 freqField = defFreq
             }
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        super.touchesBegan(touches, with: event)
     }
     
     //store chosen settings and pass to VC

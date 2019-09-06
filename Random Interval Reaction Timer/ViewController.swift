@@ -41,6 +41,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var canPauseState = false
     var canResumeState = false
     var elapsedIntervalOfTime = 0
+    var makeInitStim = false
     
     var passedOptions = [SettingsTableViewController.Options]()
     var minInterval = 1
@@ -117,6 +118,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         canStartState = false
         canPauseState = true
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        timerLabel.text = "\(timeFormatted(totalSeconds))"
+        makeInitStim = true
     }
     
     //sets up array of Sounds to randomly pick from during timer
@@ -125,14 +128,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         for option in passedOptions {
             if option.isSound {
                 for url in mainSoundsArray {
-                    if (url.absoluteString.range(of: option.text) != nil) {
+                    let str = url.lastPathComponent as String
+                    let substr = str.dropLast(4)
+                    if option.text == substr {
                         sounds.append(url)
                     }
                 }
             }
         }
-        print("setup sounds array")
-        print(sounds)
         return sounds
     }
     
@@ -159,19 +162,50 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     //updates timer; checks when to trigger stimulus
     @objc func updateTime() {
-        timerLabel.text = "\(timeFormatted(totalSeconds))"
-        if totalSeconds != -1 {
+        if totalSeconds != 0 {
             totalSeconds -= 1
-            if canTriggerStimulus() {
+            timerLabel.text = "\(timeFormatted(totalSeconds))"
+            if canTriggerStimulus() || makeInitStim {
+                var canPlayAudio = false
+                var canChangeColor = false
+                makeInitStim = false
                 if (soundsArray.count > 0) {
-                    self.playRandomAudio(selectedAudio: soundsArray)
+                    canPlayAudio = true
                 }
                 if (colorArray.count > 0) {
+                    canChangeColor = true
+                }
+                if canPlayAudio && canChangeColor {
+                    let num = Int.random(in: 0...1)
+                    if num == 0 {
+                        self.playRandomAudio(selectedAudio: soundsArray)
+                    } else {
+                        self.changeForegroundColor(selectedColors: colorArray)
+                    }
+                } else if canPlayAudio {
+                    self.playRandomAudio(selectedAudio: soundsArray)
+                } else if canChangeColor {
                     self.changeForegroundColor(selectedColors: colorArray)
                 }
             }
         } else {
+            playSoundNow("buzzer")
             self.endTimer()
+        }
+    }
+    
+    //plays specific sound immediate
+    func playSoundNow(_ filename: String) {
+        let audioFileName = filename
+        if let audioFileURL = Bundle.main.url(forResource: audioFileName, withExtension: "mp3", subdirectory: "Sounds") {
+            do {
+                soundPlayer = try AVAudioPlayer(contentsOf: audioFileURL)
+                soundPlayer.prepareToPlay()
+                soundPlayer.volume = 1
+                soundPlayer.play()
+            } catch {
+                print(error)
+            }
         }
     }
     
@@ -187,19 +221,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func canTriggerStimulus () -> Bool {
         elapsedIntervalOfTime += 1
         if elapsedIntervalOfTime >= minInterval {
-//            if elapsedIntervalOfTime % 2 == 0 {
-//                let num = Int.random(in: 0...3)
-//                if num == 0 {
-//                    return true
-//                }
-//            } else {
-                let upperLimit = cap - frequency
-                let num = Int.random(in: 0...upperLimit)
-                if num == 0 {
-                    elapsedIntervalOfTime = 0
-                    return true
-                }
-//            }
+            let upperLimit = cap - frequency
+            let num = Int.random(in: 0...upperLimit)
+            if num == 0 {
+                elapsedIntervalOfTime = 0
+                return true
+            }
         }
         return false
     }
@@ -209,6 +236,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         if selectedAudio.count == 1 {
             do {
                 soundPlayer = try AVAudioPlayer(contentsOf: selectedAudio[0])
+                soundPlayer.prepareToPlay()
                 soundPlayer.volume = 1
                 soundPlayer.play()
             } catch {
@@ -224,6 +252,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             let selection = Int.random(in: 0...(audioChoices.count-1))
             do {
                 soundPlayer = try AVAudioPlayer(contentsOf: audioChoices[selection])
+                soundPlayer.prepareToPlay()
                 soundPlayer.volume = 1
                 soundPlayer.play()
                 prevAudio = audioChoices[selection]

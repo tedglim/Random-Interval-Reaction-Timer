@@ -200,6 +200,9 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="numInputEditingDidEnd:" destination="nhT-4s-qBj" eventType="editingDidEnd" id="XaW-7F-vgG"/>
                                             </connections>
