@@ -20,12 +20,11 @@ class SettingsTableViewController: UITableViewController {
         var isSound = false
         var isColor = false
         var text = ""
-        var section = -1
-        var row = -1
+        var idxPath = IndexPath()
     }
     var selectedOptions = [Options]()
     
-    var defStr = ""
+    var defStr = "1"
     var intervalField = 1
     var defInt = 1
     var freqField = 10
@@ -44,7 +43,7 @@ class SettingsTableViewController: UITableViewController {
     func checkSettings() {
         for setting in selectedOptions {
             if setting.isSelected {
-                let path = IndexPath.init(row: setting.row, section: setting.section)
+                let path = IndexPath.init(row: setting.idxPath.row, section: setting.idxPath.section)
                 self.tableView.selectRow(at: path, animated: false, scrollPosition: .none)
                 self.tableView.cellForRow(at: path)?.accessoryType = .checkmark
             }
@@ -77,7 +76,13 @@ class SettingsTableViewController: UITableViewController {
 
     //addContent; fills timer options settings on add content phase
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell01 = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)
+        if selectedOptions.firstIndex(where: { $0.idxPath == indexPath }) != nil {
+            cell01.accessoryType = .checkmark
+        } else {
+            cell01.accessoryType = .none
+        }
         switch (indexPath.section) {
         case 0:
             cell01.textLabel?.text = settingOptions1[indexPath.row]
@@ -109,11 +114,12 @@ class SettingsTableViewController: UITableViewController {
                 cell.accessoryType = .none
                 cell.isSelected = false
                 cell.isHighlighted = false
-                let index = selectedOptions.firstIndex(where: { $0.section == indexPath.section && $0.row == indexPath.row })
-                selectedOptions.remove(at: index!)
+                if let index = selectedOptions.firstIndex(where: { $0.idxPath == indexPath }) {
+                    selectedOptions.remove(at: index)
+                }
             } else {
                 var option = Options(
-                    isSelected: true, isSound: false, isColor: false, text: cell.textLabel!.text!, section: indexPath.section, row: indexPath.row)
+                    isSelected: true, isSound: false, isColor: false, text: cell.textLabel!.text!, idxPath: indexPath)
                 if indexPath.section == 1 {
                     option.isColor = true
                 } else {
@@ -141,6 +147,10 @@ class SettingsTableViewController: UITableViewController {
             if let tmpTxt = sender.text {
                 intervalField = Int(tmpTxt) ?? defInt
             } else {
+                intervalField = defInt
+            }
+            if intervalField <= 0 {
+                sender.text = defStr
                 intervalField = defInt
             }
         } else if sender.placeholder == "1 - 10" {
