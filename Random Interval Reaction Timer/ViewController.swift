@@ -120,6 +120,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         timerLabel.text = "\(timeFormatted(totalSeconds))"
         makeInitStim = true
+        playSoundNow("buzzer")
     }
     
     //sets up array of Sounds to randomly pick from during timer
@@ -188,8 +189,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     self.changeForegroundColor(selectedColors: colorArray)
                 }
             }
+            if totalSeconds == 0 {
+                playSoundNow("buzzer")
+            }
         } else {
-            playSoundNow("buzzer")
             self.endTimer()
         }
     }
